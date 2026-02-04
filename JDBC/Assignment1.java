@@ -57,5 +57,16 @@ class Assignment1 {
                     rsHs.getDouble("marks"));
         }
 
+
+        String updateSql = "UPDATE student set name = ? WHERE id = '8'";
+        PreparedStatement updateStmt = con.prepareStatement(updateSql);
+        updateStmt.setString(1, "Cleo");
+        updateStmt.execute();
+
+
+        String deleteQuery = "DELETE FROM student WHERE marks<40";
+        PreparedStatement deleteStmt = con.prepareStatement(deleteQuery);
+        deleteStmt.execute();
+
     }
 }
