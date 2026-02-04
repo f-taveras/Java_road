@@ -23,9 +23,10 @@ public class Assignment2 {
         // TODO: Insert duplicate email records
         String insertSQL = "INSERT INTO EMAIL (email) VALUES (?)";
         PreparedStatement insertStmt = con.prepareStatement(insertSQL);
-        insertStmt.setString(1, "test2@test.com");
+        insertStmt.setString(1, "test3@test.com");
         insertStmt.execute();
 
+        // TODO: Fetch unique emails using SQL DISTINCT
         String uniqueSql = "SELECT DISTINCT EMAIL FROM EMAIL";
         Statement uniqueEmail = con.createStatement();
         ResultSet rs = uniqueEmail.executeQuery(uniqueSql);
@@ -36,9 +37,17 @@ public class Assignment2 {
 
         }
 
-        // TODO: Fetch unique emails using SQL DISTINCT
         // TODO: Remove duplicate emails using SQL DELETE with USING clause
+        String deleteDupSql = "DELETE FROM EMAIL e1 USING EMAIL e2 " +
+                              "WHERE e1.id > e2.id AND e1.email = e2.email";
+
+        Statement deleteDups = con.createStatement();
+        deleteDups.executeUpdate(deleteDupSql);
+        
+
         // TODO: Display remaining unique emails
         // TODO: Explain database-level vs collection-level duplicate handling
+        System.out.println("Database-level: Uses SQL (DISTINCT, UNIQUE constraints) to manage data on disk. Persistent and shared across all users.");
+        System.out.println("Collection-level: Uses Java structures (Set, Map) to manage data in memory. Temporary and limited to this specific running program.");
     }
 }
