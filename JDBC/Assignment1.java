@@ -66,7 +66,7 @@ class Assignment1 {
 
         String deleteQuery = "DELETE FROM student WHERE marks<40";
         PreparedStatement deleteStmt = con.prepareStatement(deleteQuery);
-        deleteStmt.execute();
+        deleteStmt.execute(deleteQuery);
 
     }
 }
